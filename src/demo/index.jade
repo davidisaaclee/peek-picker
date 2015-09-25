@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+    title peek-picker demo
+    script(src="../../../webcomponentsjs/webcomponents-lite.js")
+    link(rel="import", href="../../../polymer/polymer.html")
+    link(rel="import", href="../peek-picker.html")
+    style.
+      body {
+        margin: 0;
+      }
+
+      #picker {
+        display: block;
+        border: 1px black solid;
+      }
+  body
+    peek-picker#picker(width=320, height=568)
+
+    script(src="peek-picker-demo.js")

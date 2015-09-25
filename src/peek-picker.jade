@@ -1,0 +1,52 @@
+link(rel="import", href="../../polymer/polymer.html")
+
+dom-module#peek-picker
+  style.
+    :host {
+      box-sizing: border-box;
+    }
+
+    #background {
+      width: 100%;
+      height: 100%;
+
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .picker-item {
+      transition: transform 0.2s;
+    }
+
+    .picker-item.over {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+  template
+    div#background(hidden="{{!visible}}")
+      div#grid
+        template(is='dom-repeat', items='{{positionedItems}}')
+          html-echo.picker-item(element='{{item.element}}',
+                                //- style$='{{item.transform}}',
+                                data-key$='{{item.key}}')
+
+dom-module#html-echo
+  template
+
+script(src="peek-picker.js")
+script.
+  Polymer({
+    is: 'html-echo',
+    properties: {
+      element: {
+        type: Object,
+        observe: '_elementChanged'
+      }
+    },
+    ready: function () {
+      this._elementChanged();
+    },
+    _elementChanged: function () {
+      this.innerHTML = this.element.outerHTML;
+    }
+  })
